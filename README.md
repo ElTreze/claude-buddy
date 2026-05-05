@@ -20,7 +20,7 @@ A session companion for Claude Code. Every time you open a new session, a random
 
 ```bash
 # 1. Clone into your Claude plugins folder
-git clone https://github.com/pablogarcia9713/claude-buddy ~/.claude/plugins/claude-buddy
+git clone https://github.com/ElTreze/claude-buddy ~/.claude/plugins/claude-buddy
 
 # 2. Run the installer
 # Windows:
