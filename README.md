@@ -1,4 +1,4 @@
-# Claude Buddy 🦆
+# Claude Buddy 🐉
 
 A session companion for Claude Code. Every time you open a new session, a random creature appears — with its own species, rarity, species-specific stats, and a personality phrase. Lives in your status bar the whole session, gone when you close it.
 
