@@ -13,11 +13,14 @@ from pathlib import Path
 if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
-PLUGIN_DIR  = Path(__file__).parent.parent
-SCRIPTS_DIR = PLUGIN_DIR / 'scripts'
-CLAUDE_DIR  = Path.home() / '.claude'
-SETTINGS    = CLAUDE_DIR / 'settings.json'
-CONFIG      = PLUGIN_DIR / 'config.json'
+PLUGIN_DIR   = Path(__file__).parent.parent
+SCRIPTS_DIR  = PLUGIN_DIR / 'scripts'
+CLAUDE_DIR   = Path.home() / '.claude'
+SETTINGS     = CLAUDE_DIR / 'settings.json'
+COMMANDS_DIR = CLAUDE_DIR / 'commands'
+CONFIG       = PLUGIN_DIR / 'config.json'
+SKILL_SRC    = PLUGIN_DIR / 'SKILL.md'
+COMMAND_DST  = COMMANDS_DIR / 'buddy.md'
 
 # Use 'python' so it matches however Claude Code resolves it on each platform.
 # On Windows this works via PATH; on Mac/Linux use python3 if needed.
@@ -107,6 +110,11 @@ def install():
 
     save_settings(settings)
 
+    # ── 3. /buddy slash command ──────────────────────────────────────────────
+    COMMANDS_DIR.mkdir(exist_ok=True)
+    shutil.copy2(SKILL_SRC, COMMAND_DST)
+    print("  ✓ /buddy command registered")
+
     print("\n╔══════════════════════════════════════╗")
     print("║  Done! Restart Claude Code to meet  ║")
     print("║  your first session buddy.  ★        ║")
@@ -145,6 +153,12 @@ def uninstall():
         print("  ✓ Status line removed")
 
     save_settings(settings)
+
+    # Remove /buddy command
+    if COMMAND_DST.exists():
+        COMMAND_DST.unlink()
+        print("  ✓ /buddy command removed")
+
     print("\n  Claude Buddy uninstalled. Goodbye. 👋\n")
 
 
