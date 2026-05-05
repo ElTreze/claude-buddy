@@ -1,6 +1,6 @@
 # Claude Buddy 🐉
 
-A session companion for Claude Code. Every time you open a new session, a random creature appears — with its own species, rarity, species-specific stats, and a personality phrase. Lives in your status bar the whole session, gone when you close it.
+A session companion for Claude Code. Every time you open a new session, a random creature appears - with its own species, rarity, species-specific stats, and a personality phrase. Lives in your status bar the whole session, gone when you close it.
 
 ## What you get
 
@@ -13,7 +13,7 @@ A session companion for Claude Code. Every time you open a new session, a random
 - **✨ Shiny** variant: 1% chance
 - **Species-specific stats**: each creature has its own 5 themed stats (duck gets QUACK/WADDLE/BREAD/POND_IQ/HONK, dragon gets FIRE/HOARD/RAVAGE/LORE/PRESENCE, etc.)
 - **30 personality phrases** based on the creature's dominant stat archetype
-- **Status bar** shows compact buddy info + personality phrase all session long — zero tokens burned
+- **Status bar** shows compact buddy info + personality phrase all session long - zero tokens burned
 - **`/buddy`** skill to display or reroll mid-session
 
 ## Install
@@ -30,7 +30,7 @@ python ~/.claude/plugins/claude-buddy/scripts/install.py
 python3 ~/.claude/plugins/claude-buddy/scripts/install.py
 ```
 
-Restart Claude Code after installing — your first buddy will appear in the status bar.
+Restart Claude Code after installing - your first buddy will appear in the status bar.
 
 ## Uninstall
 
