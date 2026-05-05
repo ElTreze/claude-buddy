@@ -9,6 +9,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
 CONFIG_PATH = Path(__file__).parent.parent / 'config.json'
 BUDDY_SCRIPT = Path(__file__).parent / 'statusline_buddy.py'
 PYTHON = sys.executable
