@@ -38,15 +38,31 @@ Your buddy persists between sessions. The name, species, and personality are you
 - **Status bar** shows buddy info + token progress toward next stage — zero tokens burned
 - **`/buddy`** skill to view full card or reroll mid-session
 
+## Levels
+
+Every 1,000 output tokens = 1 level. Levels go from 1 to 10,000.
+
+```
+lvl. 1      →     0 tokens
+lvl. 500    →   499K tokens
+lvl. 1001   →     1M tokens  (Stage 2 evolution)
+lvl. 5001   →     5M tokens  (Stage 3 evolution)
+lvl. 10000  →    10M tokens  (Stage 4 — max)
+```
+
+Level milestones are announced at every 500 levels:
+
+```
+🎉 Zorp reached lvl. 500!
+```
+
 ## Status bar
 
 ```
-🦊 Zorp  ★★ UNCOMMON  STA 100  S2 1.4M→5.0M  "Every timeout is a feature. Every hang, an opportunity."
+🦊 Zorp lvl. 5544  ★★★ RARE ✨  STA 100  5.5M→MAX  "Every timeout is a feature. Every hang, an opportunity."
 ```
 
 Colors by rarity: white · green · cyan · magenta · gold
-
-The `S2 1.4M→5.0M` segment shows your current stage and progress toward the next one.
 
 ## Install
 
@@ -81,7 +97,7 @@ No network calls. No external dependencies. Pure Python stdlib.
 ```
 ╔══════════════════════════════════════════════════════╗
 ║                                                      ║
-║  🦆 QUACKBERT                                        ║
+║  🦆 QUACKBERT  lvl. 312                              ║
 ║  ★★★ RARE                                           ║
 ║                                                      ║
 ╠══════════════════════════════════════════════════════╣
