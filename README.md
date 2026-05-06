@@ -94,6 +94,8 @@ No network calls. No external dependencies. Pure Python stdlib.
 
 ## The card (via `/buddy`)
 
+![/buddy card](screenshot-card.png)
+
 ```
 ╔══════════════════════════════════════════════════════╗
 ║                                                      ║
