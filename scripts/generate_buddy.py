@@ -358,7 +358,7 @@ def generate_stats(species_key, floor):
 
 
 def tokens_to_level(tokens: int) -> int:
-    return min(10000, tokens // 1000 + 1)
+    return min(10000, tokens // 1_000_000 + 1)
 
 
 def generate_buddy():

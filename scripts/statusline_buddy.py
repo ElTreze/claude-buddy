@@ -22,7 +22,7 @@ ANSI = {
     'LEGENDARY': '\033[93m',
 }
 
-STAGE_THRESHOLDS = [0, 500_000, 1_000_000, 5_000_000, 10_000_000]
+STAGE_THRESHOLDS = [0, 25_000_000, 75_000_000, 200_000_000, 500_000_000]
 
 
 def fmt_tokens(n: int) -> str:
@@ -66,7 +66,7 @@ def main() -> None:
     peak_val = buddy.get('stats', {}).get(peak, 0)
 
     tokens_total = evolution.get('tokens_total', 0) if evolution else 0
-    level = min(10000, tokens_total // 1000 + 1)
+    level = min(10000, tokens_total // 1_000_000 + 1)
 
     shiny_part = f' {shiny}' if shiny else ''
     peak_part  = f'  {dim}{peak[:3]} {peak_val}{reset}' if peak else ''

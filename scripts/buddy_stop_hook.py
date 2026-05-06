@@ -21,11 +21,11 @@ RARITY_ORDER = ['COMMON', 'UNCOMMON', 'RARE', 'EPIC', 'LEGENDARY']
 STARS_ORDER  = ['★', '★★', '★★★', '★★★★', '★★★★★']
 
 STAGES = [
-    {'threshold':        0, 'stat_boost':  0, 'rarity_up': False, 'shiny': False, 'force_legendary': False},
-    {'threshold':   500_000, 'stat_boost': 10, 'rarity_up': False, 'shiny': False, 'force_legendary': False},
-    {'threshold': 1_000_000, 'stat_boost': 10, 'rarity_up': True,  'shiny': False, 'force_legendary': False},
-    {'threshold': 5_000_000, 'stat_boost': 15, 'rarity_up': True,  'shiny': True,  'force_legendary': False},
-    {'threshold':10_000_000, 'stat_boost': 20, 'rarity_up': False, 'shiny': True,  'force_legendary': True},
+    {'threshold':           0, 'stat_boost':  0, 'rarity_up': False, 'shiny': False, 'force_legendary': False},
+    {'threshold':  25_000_000, 'stat_boost': 10, 'rarity_up': False, 'shiny': False, 'force_legendary': False},
+    {'threshold':  75_000_000, 'stat_boost': 10, 'rarity_up': True,  'shiny': False, 'force_legendary': False},
+    {'threshold': 200_000_000, 'stat_boost': 15, 'rarity_up': True,  'shiny': True,  'force_legendary': False},
+    {'threshold': 500_000_000, 'stat_boost': 20, 'rarity_up': False, 'shiny': True,  'force_legendary': True},
 ]
 
 
@@ -129,7 +129,7 @@ def main() -> None:
     except (json.JSONDecodeError, OSError, IOError):
         return
     tokens_before = evolution.get('tokens_total', 0)
-    level_before  = min(10000, tokens_before // 1000 + 1)
+    level_before  = min(10000, tokens_before // 1_000_000 + 1)
 
     evolution = {
         **evolution,
@@ -140,7 +140,7 @@ def main() -> None:
     evolution, did_evolve = apply_evolution(evolution)
 
     tokens_after = evolution['tokens_total']
-    level_after  = min(10000, tokens_after // 1000 + 1)
+    level_after  = min(10000, tokens_after // 1_000_000 + 1)
 
     try:
         EVOLUTION_PATH.write_text(
@@ -167,11 +167,11 @@ def main() -> None:
             "systemMessage": f"✨ {evolution['buddy']['name']} evolved to Stage {stage}! Now lvl. {level_after} ({tokens_m:.1f}M tokens)"
         }))
     else:
-        # Notify on every 500-level milestone
-        prev_milestone = (level_before - 1) // 500
-        curr_milestone = (level_after  - 1) // 500
+        # Notify on every 25-level milestone
+        prev_milestone = (level_before - 1) // 25
+        curr_milestone = (level_after  - 1) // 25
         if curr_milestone > prev_milestone and level_after > 1:
-            milestone_lvl = curr_milestone * 500
+            milestone_lvl = curr_milestone * 25
             print(json.dumps({
                 "systemMessage": f"🎉 {evolution['buddy']['name']} reached lvl. {milestone_lvl}!"
             }))

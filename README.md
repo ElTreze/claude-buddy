@@ -10,16 +10,18 @@ Buddy tracks your cumulative output tokens across all sessions. Hit a milestone 
 
 ```
 Stage 0  ·          0 tokens  ·  base form, as generated
-Stage 1  ·       500K tokens  ·  stats +10, gains an extra star
-Stage 2  ·         1M tokens  ·  stats +10, rarity tier up
-Stage 3  ·         5M tokens  ·  stats +15, rarity tier up, ✨ shiny unlocked
-Stage 4  ·        10M tokens  ·  stats +20, guaranteed LEGENDARY + ✨ shiny
+Stage 1  ·        25M tokens  ·  stats +10, gains an extra star
+Stage 2  ·        75M tokens  ·  stats +10, rarity tier up
+Stage 3  ·       200M tokens  ·  stats +15, rarity tier up, ✨ shiny unlocked
+Stage 4  ·       500M tokens  ·  stats +20, guaranteed LEGENDARY + ✨ shiny
 ```
+
+Evolutions are designed to take weeks of daily use — not something you blast through in a session.
 
 When a milestone is crossed at session end, you'll see it:
 
 ```
-✨ Zorp evolved to Stage 2! (1.4M tokens total)
+✨ Zorp evolved to Stage 2! Now lvl. 75 (75.3M tokens)
 ```
 
 Your buddy persists between sessions. The name, species, and personality are yours to keep — only the power level grows.
@@ -40,20 +42,21 @@ Your buddy persists between sessions. The name, species, and personality are you
 
 ## Levels
 
-Every 1,000 output tokens = 1 level. Levels go from 1 to 10,000.
+Every 1,000,000 output tokens = 1 level. Levels go from 1 to 10,000.
 
 ```
-lvl. 1      →     0 tokens
-lvl. 500    →   499K tokens
-lvl. 1001   →     1M tokens  (Stage 2 evolution)
-lvl. 5001   →     5M tokens  (Stage 3 evolution)
-lvl. 10000  →    10M tokens  (Stage 4 — max)
+lvl. 1      →      0 tokens
+lvl. 25     →     25M tokens  (Stage 1 evolution)
+lvl. 75     →     75M tokens  (Stage 2 evolution)
+lvl. 200    →    200M tokens  (Stage 3 evolution)
+lvl. 500    →    500M tokens  (Stage 4 — max evolution)
+lvl. 10000  →     10B tokens  (absolute max)
 ```
 
-Level milestones are announced at every 500 levels:
+Level milestones are announced every 25 levels:
 
 ```
-🎉 Zorp reached lvl. 500!
+🎉 Zorp reached lvl. 25!
 ```
 
 ## Status bar
