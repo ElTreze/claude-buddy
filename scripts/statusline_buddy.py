@@ -65,6 +65,9 @@ def main() -> None:
     peak     = buddy.get('peak_stat', '')
     peak_val = buddy.get('stats', {}).get(peak, 0)
 
+    tokens_total = evolution.get('tokens_total', 0) if evolution else 0
+    level = min(10000, tokens_total // 1000 + 1)
+
     shiny_part = f' {shiny}' if shiny else ''
     peak_part  = f'  {dim}{peak[:3]} {peak_val}{reset}' if peak else ''
 
@@ -74,9 +77,9 @@ def main() -> None:
         stage  = evolution.get('evolution_stage', 0)
         if stage < len(STAGE_THRESHOLDS) - 1:
             next_threshold = STAGE_THRESHOLDS[stage + 1]
-            token_part = f'  {dim}S{stage} {fmt_tokens(tokens)}→{fmt_tokens(next_threshold)}{reset}'
+            token_part = f'  {dim}{fmt_tokens(tokens)}→{fmt_tokens(next_threshold)}{reset}'
         else:
-            token_part = f'  {dim}S{stage} {fmt_tokens(tokens)} MAX{reset}'
+            token_part = f'  {dim}{fmt_tokens(tokens)} MAX{reset}'
 
     personality = buddy.get('personality', '')
     if personality:
@@ -86,7 +89,7 @@ def main() -> None:
         phrase_part = ''
 
     line = (
-        f"{col}{bold}{emoji} {name}{reset}"
+        f"{col}{bold}{emoji} {name} lvl. {level}{reset}"
         f"  {col}{stars} {rarity}{shiny_part}{reset}"
         f"{peak_part}"
         f"{token_part}"

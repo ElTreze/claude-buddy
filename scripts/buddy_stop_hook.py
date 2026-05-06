@@ -128,13 +128,19 @@ def main() -> None:
         evolution = json.loads(raw)
     except (json.JSONDecodeError, OSError, IOError):
         return
+    tokens_before = evolution.get('tokens_total', 0)
+    level_before  = min(10000, tokens_before // 1000 + 1)
+
     evolution = {
         **evolution,
-        'tokens_total': evolution.get('tokens_total', 0) + session_tokens,
+        'tokens_total': tokens_before + session_tokens,
         'sessions': evolution.get('sessions', 0) + 1,
     }
 
     evolution, did_evolve = apply_evolution(evolution)
+
+    tokens_after = evolution['tokens_total']
+    level_after  = min(10000, tokens_after // 1000 + 1)
 
     try:
         EVOLUTION_PATH.write_text(
@@ -145,9 +151,10 @@ def main() -> None:
         return
 
     session_path = Path.home() / '.claude' / 'buddy_session.json'
+    buddy_with_level = {**evolution['buddy'], 'level': level_after}
     try:
         session_path.write_text(
-            json.dumps(evolution['buddy'], indent=2, ensure_ascii=False),
+            json.dumps(buddy_with_level, indent=2, ensure_ascii=False),
             encoding='utf-8'
         )
     except Exception:
@@ -155,10 +162,19 @@ def main() -> None:
 
     if did_evolve:
         stage = evolution['evolution_stage']
-        tokens_m = evolution['tokens_total'] / 1_000_000
+        tokens_m = tokens_after / 1_000_000
         print(json.dumps({
-            "systemMessage": f"✨ {evolution['buddy']['name']} evolved to Stage {stage}! ({tokens_m:.1f}M tokens total)"
+            "systemMessage": f"✨ {evolution['buddy']['name']} evolved to Stage {stage}! Now lvl. {level_after} ({tokens_m:.1f}M tokens)"
         }))
+    else:
+        # Notify on every 500-level milestone
+        prev_milestone = (level_before - 1) // 500
+        curr_milestone = (level_after  - 1) // 500
+        if curr_milestone > prev_milestone and level_after > 1:
+            milestone_lvl = curr_milestone * 500
+            print(json.dumps({
+                "systemMessage": f"🎉 {evolution['buddy']['name']} reached lvl. {milestone_lvl}!"
+            }))
 
 
 if __name__ == '__main__':

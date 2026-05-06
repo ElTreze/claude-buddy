@@ -357,6 +357,10 @@ def generate_stats(species_key, floor):
     return {stat_names[i]: vals[i] for i in range(5)}
 
 
+def tokens_to_level(tokens: int) -> int:
+    return min(10000, tokens // 1000 + 1)
+
+
 def generate_buddy():
     species_key = random.choice(list(SPECIES.keys()))
     species     = SPECIES[species_key]
@@ -455,7 +459,8 @@ def render_card(buddy):
     personality_lines = wrap_text(f'"{buddy["personality"]}"', inner - pad_l)
 
     shiny_tag = '  ✨ SHINY' if buddy['shiny'] else ''
-    header1   = f"{buddy['emoji']} {buddy['name'].upper()}"
+    level     = buddy.get('level', 1)
+    header1   = f"{buddy['emoji']} {buddy['name'].upper()}  lvl. {level}"
     header2   = f"{buddy['stars']} {buddy['rarity']}{shiny_tag}"
 
     lines = [
@@ -493,7 +498,10 @@ def main() -> None:
     if evolution_path.exists():
         try:
             evolution = json.loads(evolution_path.read_text(encoding='utf-8-sig'))
-            buddy = evolution['buddy']
+            buddy = {
+                **evolution['buddy'],
+                'level': tokens_to_level(evolution.get('tokens_total', 0)),
+            }
             session_path.write_text(json.dumps(buddy, indent=2, ensure_ascii=False), encoding='utf-8')
         except (json.JSONDecodeError, KeyError, OSError, TypeError):
             buddy = generate_buddy()
