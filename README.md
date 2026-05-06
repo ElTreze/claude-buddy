@@ -9,14 +9,14 @@ A companion for Claude Code that grows alongside you. Every session the same cre
 Buddy tracks your cumulative output tokens across all sessions. Hit a milestone and watch your companion grow: higher rarity, stronger stats, new stars — and eventually, a guaranteed shiny form.
 
 ```
-Stage 0  ·          0 tokens  ·  base form, as generated
-Stage 1  ·        25M tokens  ·  stats +10, gains an extra star
-Stage 2  ·        75M tokens  ·  stats +10, rarity tier up
-Stage 3  ·       200M tokens  ·  stats +15, rarity tier up, ✨ shiny unlocked
-Stage 4  ·       500M tokens  ·  stats +20, guaranteed LEGENDARY + ✨ shiny
+Stage 0  ·         0 tokens  ·  base form, as generated
+Stage 1  ·        5M tokens  ·  stats +10, gains an extra star   (~1 week)
+Stage 2  ·       15M tokens  ·  stats +10, rarity tier up        (~2-3 weeks)
+Stage 3  ·       30M tokens  ·  stats +15, rarity tier up, ✨    (~5-6 weeks)
+Stage 4  ·       50M tokens  ·  stats +20, guaranteed LEGENDARY  (~2 months)
 ```
 
-Evolutions are designed to take weeks of daily use — not something you blast through in a session.
+Reaching Stage 4 takes roughly two months of daily use.
 
 When a milestone is crossed at session end, you'll see it:
 
@@ -45,18 +45,18 @@ Your buddy persists between sessions. The name, species, and personality are you
 Every 1,000,000 output tokens = 1 level. Levels go from 1 to 10,000.
 
 ```
-lvl. 1      →      0 tokens
-lvl. 25     →     25M tokens  (Stage 1 evolution)
-lvl. 75     →     75M tokens  (Stage 2 evolution)
-lvl. 200    →    200M tokens  (Stage 3 evolution)
-lvl. 500    →    500M tokens  (Stage 4 — max evolution)
-lvl. 10000  →     10B tokens  (absolute max)
+lvl. 1      →     0 tokens
+lvl. 5      →    5M tokens   (Stage 1 evolution)
+lvl. 15     →   15M tokens   (Stage 2 evolution)
+lvl. 30     →   30M tokens   (Stage 3 evolution)
+lvl. 50     →   50M tokens   (Stage 4 — max evolution)
+lvl. 10000  →   10B tokens   (absolute max — a long journey)
 ```
 
-Level milestones are announced every 25 levels:
+Level milestones are announced every 5 levels:
 
 ```
-🎉 Zorp reached lvl. 25!
+🎉 Zorp reached lvl. 5!
 ```
 
 ## Status bar

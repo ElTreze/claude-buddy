@@ -22,7 +22,7 @@ ANSI = {
     'LEGENDARY': '\033[93m',
 }
 
-STAGE_THRESHOLDS = [0, 25_000_000, 75_000_000, 200_000_000, 500_000_000]
+STAGE_THRESHOLDS = [0, 5_000_000, 15_000_000, 30_000_000, 50_000_000]
 
 
 def fmt_tokens(n: int) -> str:

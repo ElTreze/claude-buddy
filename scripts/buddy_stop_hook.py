@@ -21,11 +21,11 @@ RARITY_ORDER = ['COMMON', 'UNCOMMON', 'RARE', 'EPIC', 'LEGENDARY']
 STARS_ORDER  = ['★', '★★', '★★★', '★★★★', '★★★★★']
 
 STAGES = [
-    {'threshold':           0, 'stat_boost':  0, 'rarity_up': False, 'shiny': False, 'force_legendary': False},
-    {'threshold':  25_000_000, 'stat_boost': 10, 'rarity_up': False, 'shiny': False, 'force_legendary': False},
-    {'threshold':  75_000_000, 'stat_boost': 10, 'rarity_up': True,  'shiny': False, 'force_legendary': False},
-    {'threshold': 200_000_000, 'stat_boost': 15, 'rarity_up': True,  'shiny': True,  'force_legendary': False},
-    {'threshold': 500_000_000, 'stat_boost': 20, 'rarity_up': False, 'shiny': True,  'force_legendary': True},
+    {'threshold':          0, 'stat_boost':  0, 'rarity_up': False, 'shiny': False, 'force_legendary': False},
+    {'threshold':  5_000_000, 'stat_boost': 10, 'rarity_up': False, 'shiny': False, 'force_legendary': False},
+    {'threshold': 15_000_000, 'stat_boost': 10, 'rarity_up': True,  'shiny': False, 'force_legendary': False},
+    {'threshold': 30_000_000, 'stat_boost': 15, 'rarity_up': True,  'shiny': True,  'force_legendary': False},
+    {'threshold': 50_000_000, 'stat_boost': 20, 'rarity_up': False, 'shiny': True,  'force_legendary': True},
 ]
 
 
@@ -167,11 +167,11 @@ def main() -> None:
             "systemMessage": f"✨ {evolution['buddy']['name']} evolved to Stage {stage}! Now lvl. {level_after} ({tokens_m:.1f}M tokens)"
         }))
     else:
-        # Notify on every 25-level milestone
-        prev_milestone = (level_before - 1) // 25
-        curr_milestone = (level_after  - 1) // 25
+        # Notify on every 5-level milestone
+        prev_milestone = (level_before - 1) // 5
+        curr_milestone = (level_after  - 1) // 5
         if curr_milestone > prev_milestone and level_after > 1:
-            milestone_lvl = curr_milestone * 25
+            milestone_lvl = curr_milestone * 5
             print(json.dumps({
                 "systemMessage": f"🎉 {evolution['buddy']['name']} reached lvl. {milestone_lvl}!"
             }))
