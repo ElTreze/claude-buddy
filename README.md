@@ -1,8 +1,28 @@
 # Claude Buddy 🐉
 
-A session companion for Claude Code. Every time you open a new session, a random creature appears - with its own species, rarity, species-specific stats, and a personality phrase. Lives in your status bar the whole session, gone when you close it.
+A companion for Claude Code that grows alongside you. Every session the same creature waits in your status bar - and the more you work together, the stronger it gets.
 
 ![Claude Buddy in action](screenshot.png)
+
+## Your companion evolves as you work
+
+Buddy tracks your cumulative output tokens across all sessions. Hit a milestone and watch your companion grow: higher rarity, stronger stats, new stars — and eventually, a guaranteed shiny form.
+
+```
+Stage 0  ·          0 tokens  ·  base form, as generated
+Stage 1  ·       500K tokens  ·  stats +10, gains an extra star
+Stage 2  ·         1M tokens  ·  stats +10, rarity tier up
+Stage 3  ·         5M tokens  ·  stats +15, rarity tier up, ✨ shiny unlocked
+Stage 4  ·        10M tokens  ·  stats +20, guaranteed LEGENDARY + ✨ shiny
+```
+
+When a milestone is crossed at session end, you'll see it:
+
+```
+✨ Zorp evolved to Stage 2! (1.4M tokens total)
+```
+
+Your buddy persists between sessions. The name, species, and personality are yours to keep — only the power level grows.
 
 ## What you get
 
@@ -11,12 +31,22 @@ A session companion for Claude Code. Every time you open a new session, a random
   - Mythical: dragon, ghost, phoenix
   - Plants: cactus, mushroom
   - Abstract: robot, blob, chonk
-- **5 rarities**: Common (60%) · Uncommon (25%) · Rare (10%) · Epic (4%) · Legendary (1%)
-- **✨ Shiny** variant: 1% chance
-- **Species-specific stats**: each creature has its own 5 themed stats (duck gets QUACK/WADDLE/BREAD/POND_IQ/HONK, dragon gets FIRE/HOARD/RAVAGE/LORE/PRESENCE, etc.)
+- **5 rarities**: Common · Uncommon · Rare · Epic · Legendary — each with its own status bar color
+- **✨ Shiny** variant: 1% chance at generation, guaranteed at Stage 3+
+- **Species-specific stats**: 5 themed stats per creature (duck gets QUACK/WADDLE/BREAD/POND_IQ/HONK, dragon gets FIRE/HOARD/RAVAGE/LORE/PRESENCE, etc.)
 - **30 personality phrases** based on the creature's dominant stat archetype
-- **Status bar** shows compact buddy info + personality phrase all session long - zero tokens burned
-- **`/buddy`** skill to display or reroll mid-session
+- **Status bar** shows buddy info + token progress toward next stage — zero tokens burned
+- **`/buddy`** skill to view full card or reroll mid-session
+
+## Status bar
+
+```
+🦊 Zorp  ★★ UNCOMMON  STA 100  S2 1.4M→5.0M  "Every timeout is a feature. Every hang, an opportunity."
+```
+
+Colors by rarity: white · green · cyan · magenta · gold
+
+The `S2 1.4M→5.0M` segment shows your current stage and progress toward the next one.
 
 ## Install
 
@@ -42,23 +72,9 @@ python ~/.claude/plugins/claude-buddy/scripts/install.py --uninstall
 
 ## How it works
 
-On session start, a Python script rolls your buddy (species, rarity, name, stats, personality) and saves it to `~/.claude/buddy_session.json`. The status line reads that file and shows a compact colored line throughout the session.
+On first session, a Python script rolls your buddy (species, rarity, name, stats, personality) and saves it to `~/.claude/buddy_evolution.json`. Every subsequent session loads the same buddy from that file — no rerolls, no resets. When a session ends, the Stop hook parses the session transcript to count output tokens, adds them to your cumulative total, and applies any pending evolutions.
 
 No network calls. No external dependencies. Pure Python stdlib.
-
-## Status bar
-
-```
-🦊 Wumbo  ★★ UNCOMMON  TRI 87  "Does not read the docs. Does not need to. Usually."
-```
-
-Colors by rarity: white · green · cyan · magenta · gold
-
-## Compatibility
-
-- Requires Python 3.8+
-- Works alongside any existing status line command (merges automatically)
-- Tested on Windows 11 and macOS
 
 ## The card (via `/buddy`)
 
@@ -81,6 +97,12 @@ Colors by rarity: white · green · cyan · magenta · gold
 ║                                                      ║
 ╚══════════════════════════════════════════════════════╝
 ```
+
+## Compatibility
+
+- Requires Python 3.8+
+- Works alongside any existing status line command (merges automatically)
+- Tested on Windows 11 and macOS
 
 ## Species stats reference
 

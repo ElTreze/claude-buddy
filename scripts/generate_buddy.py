@@ -486,13 +486,30 @@ def render_card(buddy):
 # Entry point
 # ─────────────────────────────────────────────────────────────────────────────
 
-def main():
-    buddy = generate_buddy()
+def main() -> None:
+    evolution_path = Path.home() / '.claude' / 'buddy_evolution.json'
+    session_path   = Path.home() / '.claude' / 'buddy_session.json'
 
-    session_path = Path.home() / '.claude' / 'buddy_session.json'
-    session_path.write_text(json.dumps(buddy, indent=2, ensure_ascii=False), encoding='utf-8')
+    if evolution_path.exists():
+        try:
+            evolution = json.loads(evolution_path.read_text(encoding='utf-8-sig'))
+            buddy = evolution['buddy']
+            session_path.write_text(json.dumps(buddy, indent=2, ensure_ascii=False), encoding='utf-8')
+        except (json.JSONDecodeError, KeyError, OSError, TypeError):
+            buddy = generate_buddy()
+            session_path.write_text(json.dumps(buddy, indent=2, ensure_ascii=False), encoding='utf-8')
+    else:
+        buddy = generate_buddy()
+        session_path.write_text(json.dumps(buddy, indent=2, ensure_ascii=False), encoding='utf-8')
+        evolution = {
+            'buddy':           buddy,
+            'tokens_total':    0,
+            'evolution_stage': 0,
+            'sessions':        1,
+            'evolved_at':      [],
+        }
+        evolution_path.write_text(json.dumps(evolution, indent=2, ensure_ascii=False), encoding='utf-8')
 
-    # Empty systemMessage — buddy appears in the statusline (zero tokens)
     print(json.dumps({"systemMessage": ""}, ensure_ascii=False))
 
 
